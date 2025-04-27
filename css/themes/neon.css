@@ -1,0 +1,141 @@
+/* === Neon Garden Theme (`theme-neon`) === */
+
+/* Import a futuristic monospace font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500&display=swap'); /* Optional body font */
+
+body.theme-neon {
+  background: #0a0a14; /* Deep dark blue/purple */
+  background-image:
+    radial-gradient(ellipse at top left, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(255, 0, 255, 0.15) 0%, transparent 50%);
+  color: #00ffcc; /* Bright cyan text */
+  font-family: 'Rajdhani', 'Orbitron', sans-serif; /* Futuristic body font */
+  text-shadow: 0 0 3px rgba(0, 255, 255, 0.3); /* Subtle text glow */
+}
+
+/* Header styling */
+.theme-neon .page-header h1 {
+  font-family: 'Orbitron', sans-serif; /* More distinct title font */
+  color: #ff00ff; /* Neon magenta */
+  font-size: 2.8rem;
+  text-shadow:
+    0 0 5px #ff00ff,
+    0 0 10px #ff00ff,
+    0 0 15px #ff00ff,
+    0 0 2px #fff; /* Core white for brightness */
+}
+.theme-neon .page-header .intro {
+  color: #00e5e5; /* Bright cyan */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-shadow: 0 0 2px rgba(0, 255, 255, 0.5);
+}
+
+/* Navigation styling - Glowing links */
+.theme-neon .main-navigation ul {
+  border: none; /* Remove border */
+  background: none;
+  padding: 1rem 0;
+  text-align: center;
+}
+.theme-neon .main-navigation .nav-item {
+  margin-bottom: 0.8rem;
+  display: inline-block; /* Arrange side-by-side if space allows */
+  margin: 0 0.5rem 0.8rem 0.5rem;
+}
+.theme-neon .main-navigation .nav-item a {
+  color: #00ffcc;
+  font-size: 1.1rem;
+  padding: 0.4rem 0.8rem;
+  display: inline-block;
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 3px rgba(0, 255, 204, 0.5);
+}
+.theme-neon .main-navigation .nav-item a:hover {
+  background-color: rgba(0, 255, 204, 0.1);
+  color: #fff;
+  border-color: #00ffcc;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+  text-decoration: none;
+  transform: scale(1.05);
+}
+/* Show text, hide emoji/bbs-index for neon theme */
+.theme-neon .main-navigation .nav-item .emoji { display: none; }
+.theme-neon .main-navigation .nav-item .text { display: inline; }
+.theme-neon .main-navigation .nav-item .bbs-index { display: none; }
+
+/* Ambience Elements */
+.theme-neon .flower {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #ff00ff 30%, rgba(255,0,255,0.3) 70%); /* Glowing magenta */
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff00ff, 0 0 15px rgba(255, 0, 255, 0.5);
+  /* Adjust animation for a slower, floatier feel */
+  animation: grow 3s infinite alternate, sway 8s ease-in-out infinite;
+}
+.theme-neon .seed {
+  width: 5px;
+  height: 5px;
+  background: #00ffff; /* Cyan seeds */
+  border-radius: 50%;
+  box-shadow: 0 0 5px #00ffff;
+  opacity: 0.8;
+  /* Slower drift */
+  animation: drift 12s linear infinite;
+}
+.theme-neon .coming-soon {
+  color: #00ffcc;
+  font-size: 1.1rem;
+  text-shadow: 0 0 3px rgba(0, 255, 204, 0.5);
+}
+.theme-neon .cursor {
+   background-color: #00ffcc;
+   box-shadow: 0 0 5px #00ffcc;
+}
+.theme-neon .garden-quotes {
+  color: #aaaaff; /* Soft lavender */
+  font-size: 1rem;
+  font-style: italic;
+  text-shadow: 0 0 2px rgba(170, 170, 255, 0.4);
+}
+.theme-neon .counters {
+  color: #00e5e5; /* Bright cyan */
+  font-size: 0.9rem;
+  text-shadow: 0 0 2px rgba(0, 255, 255, 0.3);
+}
+
+/* Footer Styling */
+.theme-neon .garden-footer-nav,
+.theme-neon .garden-license-footer,
+.theme-neon .portal-link {
+    color: #00ffcc;
+    opacity: 0.6;
+    font-size: 0.8rem;
+}
+.theme-neon .garden-footer-nav a,
+.theme-neon .garden-license-footer a,
+.theme-neon .portal-link a {
+    color: #00ffcc;
+    text-shadow: 0 0 2px rgba(0, 255, 204, 0.3);
+}
+.theme-neon .garden-footer-nav a:hover,
+.theme-neon .garden-license-footer a:hover,
+.theme-neon .portal-link a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+/* Hide CRT effect */
+body.theme-neon.crt::after {
+    display: none;
+}
+
+/* Hide BBS elements */
+body.theme-neon .bbs-interaction {
+    display: none;
+}

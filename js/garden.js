@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Configuration ---
   const themesConfig = {
-    desktop: ['crt', 'pixel', 'neon', 'zen'], // Add more theme slugs
-    mobile: ['pixel', 'neon', 'zen'],
+    desktop: ['crt', 'pixel', 'neon', 'zen', 'code'], // Add more theme slugs
+    mobile: ['pixel', 'neon', 'zen', 'code'],
     defaultDesktop: 'crt',
     defaultMobile: 'pixel'
   };

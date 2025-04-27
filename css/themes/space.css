@@ -1,0 +1,150 @@
+/* === Space Garden Theme (`theme-space`) === */
+
+/* Optional: Import a futuristic or clean sans-serif font */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&family=Orbitron:wght@400;700&display=swap');
+
+body.theme-space {
+  background-color: #0b0f19; /* Deep space blue/black */
+  /* Subtle starfield effect */
+  background-image: radial-gradient(white 1px, transparent 1px),
+                    radial-gradient(white 1px, transparent 1px);
+  background-size: 40px 40px, 60px 60px; /* Two layers of stars */
+  background-position: 0 0, 30px 30px;
+  color: #e0e0ff; /* Soft nebula white/lavender */
+  font-family: 'Exo 2', sans-serif; /* Clean futuristic sans-serif */
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Header styling - Cosmic */
+.theme-space .page-header {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(224, 224, 255, 0.1); /* Faint starlight border */
+    padding-bottom: 1rem;
+}
+.theme-space .page-header h1 {
+  font-family: 'Orbitron', sans-serif; /* Spacey title font */
+  color: #bb86fc; /* Deep purple accent */
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(187, 134, 252, 0.5); /* Purple glow */
+  letter-spacing: 2px;
+  border-bottom: none; /* Remove default border */
+}
+.theme-space .page-header .intro {
+  color: #a0a0ff; /* Lighter lavender */
+  font-size: 1rem;
+  max-width: 600px;
+}
+
+/* Navigation styling - Constellation links */
+.theme-space .main-navigation ul {
+  border: none;
+  background: none;
+  padding: 1rem 0;
+  text-align: center;
+  margin: 3rem 0;
+}
+.theme-space .main-navigation .nav-item {
+  margin-bottom: 0.5rem;
+  display: inline-block; /* Side by side */
+  margin: 0 0.75rem 0.8rem 0.75rem;
+}
+.theme-space .main-navigation .nav-item a {
+  color: #a0a0ff; /* Lavender */
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  border: 1px solid rgba(160, 160, 255, 0.2);
+  border-radius: 20px; /* Rounded pill shape */
+  transition: all 0.3s ease;
+}
+.theme-space .main-navigation .nav-item a:hover {
+  color: #fff;
+  background-color: rgba(187, 134, 252, 0.1); /* Faint purple bg */
+  border-color: #bb86fc;
+  box-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
+  text-decoration: none;
+}
+
+/* Show only text for Space theme */
+.theme-space .main-navigation .nav-item .emoji { display: none; }
+.theme-space .main-navigation .nav-item .text { display: inline; }
+.theme-space .main-navigation .nav-item .bbs-index { display: none; }
+
+/* Ambience Elements - Cosmic */
+.theme-space .flower {
+  width: 14px; /* Larger "planet flowers" */
+  height: 14px;
+  background: radial-gradient(circle, #fff 20%, #bb86fc 60%, rgba(187,134,252,0.3) 100%); /* Planet-like */
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #bb86fc;
+  /* Slower, floatier animations */
+  animation: grow 5s infinite alternate, sway 12s ease-in-out infinite;
+}
+.theme-space .seed {
+  width: 2px; /* Tiny stardust */
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 4px #fff;
+  opacity: 0.8;
+  animation: drift 20s linear infinite; /* Very slow drift */
+}
+.theme-space .coming-soon {
+  color: #a0a0ff;
+  font-size: 1rem;
+  font-style: italic;
+}
+.theme-space .cursor {
+   background-color: #e0e0ff; /* White cursor */
+   width: 7px; height: 1.1em;
+   box-shadow: 0 0 3px #fff;
+}
+.theme-space .garden-quotes {
+  color: #bb86fc; /* Purple */
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.9rem;
+  font-style: normal;
+  text-shadow: 0 0 4px rgba(187, 134, 252, 0.4);
+}
+.theme-space .counters {
+  color: #e0e0ff;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Footer Styling - Starlight */
+.theme-space .garden-footer-nav,
+.theme-space .garden-license-footer,
+.theme-space .portal-link {
+    color: #a0a0ff; /* Lavender */
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
+.theme-space .garden-footer-nav a,
+.theme-space .garden-license-footer a,
+.theme-space .portal-link a {
+    color: #bb86fc; /* Purple links */
+    text-decoration: none;
+}
+.theme-space .garden-footer-nav a:hover,
+.theme-space .garden-license-footer a:hover,
+.theme-space .portal-link a:hover {
+    color: #fff; /* White hover */
+    text-shadow: 0 0 5px #fff;
+    text-decoration: underline dotted;
+}
+
+/* Hide CRT effect */
+body.theme-space.crt::after {
+    display: none;
+}
+
+/* Hide BBS elements */
+body.theme-space .bbs-interaction {
+    display: none;
+}

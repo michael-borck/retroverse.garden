@@ -1,0 +1,117 @@
+/* === Pixel Garden Theme (`theme-pixel`) === */
+
+body.theme-pixel {
+  background-color: #94e0a7; /* Light green grassy background */
+  /* Simple pixelated pattern using gradients */
+  background-image:
+    linear-gradient(45deg, #74c087 25%, transparent 25%),
+    linear-gradient(-45deg, #74c087 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #74c087 75%),
+    linear-gradient(-45deg, transparent 75%, #74c087 75%);
+  background-size: 10px 10px; /* Size of the 'pixels' */
+  color: #222; /* Dark text for contrast */
+  font-family: 'Press Start 2P', 'Courier New', Courier, monospace; /* Pixel font */
+  image-rendering: pixelated; /* Helps with crisp edges */
+}
+
+/* Load the pixel font (add this link to your HTML <head> as well) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Header styling */
+.theme-pixel .page-header h1 {
+  color: #444;
+  font-size: 2rem; /* Pixel fonts are often smaller */
+  text-shadow: 2px 2px #fff; /* Simple shadow */
+}
+.theme-pixel .page-header .intro {
+  color: #333;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* Navigation styling - Simple blocky list */
+.theme-pixel .main-navigation ul {
+  border: 3px solid #444;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+  text-align: left;
+}
+.theme-pixel .main-navigation .nav-item {
+  margin-bottom: 0.3rem;
+}
+.theme-pixel .main-navigation .nav-item a {
+  color: #333;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+  display: block;
+}
+.theme-pixel .main-navigation .nav-item a:hover {
+  background-color: #444;
+  color: #fff;
+  text-decoration: none;
+}
+/* Show emoji, hide text/bbs-index for pixel theme */
+.theme-pixel .main-navigation .nav-item .emoji { display: inline; margin-right: 0.5em; font-size: 1.1em; }
+.theme-pixel .main-navigation .nav-item .text { display: none; }
+.theme-pixel .main-navigation .nav-item .bbs-index { display: none; }
+
+
+/* Ambience Elements */
+.theme-pixel .flower {
+  width: 8px; /* Blockier flowers */
+  height: 8px;
+  background: #ff8080; /* Pixel pink */
+  border: 1px solid #444;
+  border-radius: 0; /* Square pixels */
+  /* Keep grow/sway animations or simplify */
+}
+.theme-pixel .seed {
+  width: 3px;
+  height: 3px;
+  background: #fff; /* White seeds */
+  border-radius: 0;
+  border: 1px solid #555;
+}
+.theme-pixel .coming-soon {
+  color: #444;
+  font-size: 1rem;
+}
+.theme-pixel .cursor {
+   background-color: #444;
+   width: 8px; height: 1.2em; /* Block cursor */
+}
+.theme-pixel .garden-quotes {
+  color: #333;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+}
+.theme-pixel .counters {
+  color: #444;
+  font-size: 0.8rem;
+}
+
+/* Footer Styling */
+.theme-pixel .garden-footer-nav,
+.theme-pixel .garden-license-footer,
+.theme-pixel .portal-link {
+    color: #555;
+    opacity: 0.8;
+    font-size: 0.7rem;
+}
+.theme-pixel .garden-footer-nav a,
+.theme-pixel .garden-license-footer a,
+.theme-pixel .portal-link a {
+    color: #333;
+}
+.theme-pixel .garden-footer-nav a:hover,
+.theme-pixel .garden-license-footer a:hover,
+.theme-pixel .portal-link a:hover {
+    color: #000;
+}
+
+/* Hide CRT effect if active */
+body.theme-pixel.crt::after {
+    display: none;
+}

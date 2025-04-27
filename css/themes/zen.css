@@ -1,0 +1,158 @@
+/* === Zen Garden Theme (`theme-zen`) === */
+
+/* Optional: Import a clean, light serif or sans-serif font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Inter:wght@300;400&display=swap');
+
+body.theme-zen {
+  background-color: #fdf6e3; /* Soft sand/parchment color */
+  /* Optional subtle texture */
+  /* background-image: url('../img/sand-texture.png'); */
+  color: #586e75; /* Soft, muted text color (Solarized base01) */
+  font-family: 'Inter', 'Noto Serif JP', serif; /* Clean serif or sans-serif */
+  font-weight: 300;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* Header styling - Minimal */
+.theme-zen .page-header {
+    margin-bottom: 3rem;
+}
+.theme-zen .page-header h1 {
+  font-family: 'Noto Serif JP', serif;
+  color: #073642; /* Dark blue/grey (Solarized base02) */
+  font-size: 2.4rem;
+  font-weight: 400; /* Lighter weight */
+  letter-spacing: 1px;
+  border-bottom: 1px solid #eee8d5; /* Light separator (Solarized base2) */
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.theme-zen .page-header .intro {
+  color: #657b83; /* Slightly darker muted text (Solarized base00) */
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  max-width: 550px;
+}
+
+/* Navigation styling - Very simple list */
+.theme-zen .main-navigation ul {
+  border: none;
+  background: none;
+  padding: 1rem 0;
+  text-align: center; /* Center the links */
+  margin: 3rem 0;
+}
+.theme-zen .main-navigation .nav-item {
+  margin-bottom: 0.8rem;
+  display: block; /* Stack links vertically */
+}
+.theme-zen .main-navigation .nav-item a {
+  color: #268bd2; /* Blue accent (Solarized blue) */
+  font-size: 1.1rem;
+  padding: 0.3rem 0;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+}
+/* Subtle underline animation on hover */
+.theme-zen .main-navigation .nav-item a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #2aa198; /* Cyan accent (Solarized cyan) */
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+.theme-zen .main-navigation .nav-item a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.theme-zen .main-navigation .nav-item a:hover {
+    color: #2aa198; /* Cyan hover */
+    text-decoration: none;
+}
+
+/* Show only text for Zen theme */
+.theme-zen .main-navigation .nav-item .emoji { display: none; }
+.theme-zen .main-navigation .nav-item .text { display: inline; }
+.theme-zen .main-navigation .nav-item .bbs-index { display: none; }
+
+/* Ambience Elements - Soft and natural */
+.theme-zen .flower {
+  width: 12px;
+  height: 12px;
+  background: #eee8d5; /* Light base color */
+  border: 1px solid #93a1a1; /* Muted grey border (Solarized base1) */
+  border-radius: 50%; /* Simple circle */
+  box-shadow: none;
+  /* Slower, gentler animations */
+  animation: grow 4s infinite alternate, sway 10s ease-in-out infinite;
+}
+.theme-zen .seed {
+  width: 4px;
+  height: 4px;
+  background: #b58900; /* Brown/gold seed (Solarized yellow) */
+  border-radius: 50%;
+  box-shadow: none;
+  opacity: 0.6;
+  animation: drift 15s linear infinite; /* Very slow drift */
+}
+.theme-zen .coming-soon {
+  color: #657b83;
+  font-size: 1rem;
+  font-style: italic;
+}
+.theme-zen .cursor {
+   background-color: #839496; /* Muted grey cursor (Solarized base0) */
+   width: 2px; /* Thin cursor */
+   height: 1em;
+}
+.theme-zen .garden-quotes {
+  color: #93a1a1; /* Muted grey */
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  text-shadow: none;
+}
+.theme-zen .counters {
+  color: #586e75;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Footer Styling - Minimal */
+.theme-zen .garden-footer-nav,
+.theme-zen .garden-license-footer,
+.theme-zen .portal-link {
+    color: #93a1a1; /* Muted grey */
+    opacity: 0.8;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+}
+.theme-zen .garden-footer-nav a,
+.theme-zen .garden-license-footer a,
+.theme-zen .portal-link a {
+    color: #268bd2; /* Blue links */
+    text-decoration: none;
+}
+.theme-zen .garden-footer-nav a:hover,
+.theme-zen .garden-license-footer a:hover,
+.theme-zen .portal-link a:hover {
+    color: #2aa198; /* Cyan hover */
+    text-decoration: underline dotted;
+}
+
+/* Hide CRT effect */
+body.theme-zen.crt::after {
+    display: none;
+}
+
+/* Hide BBS elements */
+body.theme-zen .bbs-interaction {
+    display: none;
+}

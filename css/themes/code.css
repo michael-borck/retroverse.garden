@@ -1,0 +1,172 @@
+/* === Code Garden Theme (`theme-code`) === */
+
+/* Import a suitable coding font */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Source+Serif+4:opsz,wght@8..60,400;700&display=swap');
+
+body.theme-code {
+  background-color: #1e1e2e; /* Dark code editor background */
+  color: #cdd6f4; /* Default text color (Catppuccin Macchiato Text) */
+  font-family: 'Fira Code', monospace; /* Coding font with ligatures */
+  font-size: 15px; /* Slightly smaller base size */
+  line-height: 1.6;
+  /* Gentle animated background pattern */
+  background-image:
+    linear-gradient(rgba(179, 185, 210, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(179, 185, 210, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px; /* Subtle grid */
+}
+
+/* Header styling */
+.theme-code .page-header h1 {
+  font-family: 'Source Serif 4', serif; /* A nice serif for contrast */
+  color: #89b4fa; /* Blue */
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
+}
+.theme-code .page-header .intro {
+  color: #a6adc8; /* Subtext */
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Navigation styling - Like code structure */
+.theme-code .main-navigation ul {
+  border: none;
+  background: none;
+  padding: 1rem 0;
+  text-align: left;
+  max-width: 600px;
+  margin: 2rem auto;
+  position: relative; /* For pseudo-elements */
+}
+/* Connecting lines */
+.theme-code .main-navigation ul::before {
+    content: '';
+    position: absolute;
+    left: 10px; /* Adjust position */
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(166, 173, 200, 0.2); /* Subtext dimmed */
+}
+
+.theme-code .main-navigation .nav-item {
+  margin-bottom: 0.6rem;
+  position: relative;
+  padding-left: 30px; /* Space for line and marker */
+}
+/* Branch marker */
+.theme-code .main-navigation .nav-item::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0.7em; /* Align with text */
+    width: 15px;
+    height: 1px;
+    background-color: rgba(166, 173, 200, 0.2);
+}
+
+.theme-code .main-navigation .nav-item a {
+  color: #cdd6f4; /* Text */
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+  display: inline-block;
+  transition: color 0.3s, background-color 0.3s;
+  text-decoration: none;
+}
+.theme-code .main-navigation .nav-item a:hover {
+  color: #1e1e2e; /* Base background on hover */
+  background-color: #a6e3a1; /* Green */
+  border-radius: 3px;
+  text-decoration: none;
+}
+/* Style different categories like syntax highlighting */
+.theme-code .main-navigation .nav-item.books a { color: #f9e2af; } /* Yellow */
+.theme-code .main-navigation .nav-item.games a { color: #f38ba8; } /* Red */
+.theme-code .main-navigation .nav-item.tools a { color: #fab387; } /* Orange */
+.theme-code .main-navigation .nav-item.apps a { color: #89b4fa; } /* Blue */
+.theme-code .main-navigation .nav-item.playground a { color: #a6e3a1; } /* Green */
+.theme-code .main-navigation .nav-item.resume a { color: #cba6f7; } /* Mauve */
+.theme-code .main-navigation .nav-item.github a { color: #94e2d5; } /* Teal */
+
+/* Show text, hide emoji/bbs-index */
+.theme-code .main-navigation .nav-item .emoji { display: none; }
+.theme-code .main-navigation .nav-item .text { display: inline; }
+.theme-code .main-navigation .nav-item .bbs-index { display: none; }
+
+/* Ambience Elements */
+.theme-code .flower {
+  width: 8px;
+  height: 8px;
+  background: #a6e3a1; /* Green */
+  border-radius: 2px; /* Slightly rounded square */
+  border: none;
+  box-shadow: 0 0 4px rgba(166, 227, 161, 0.5);
+  /* Simpler animation */
+  animation: grow 2.5s infinite alternate, sway 7s ease-in-out infinite;
+}
+.theme-code .seed {
+  width: 3px;
+  height: 5px; /* Rectangular like a cursor */
+  background: #89b4fa; /* Blue */
+  border-radius: 1px;
+  box-shadow: 0 0 3px rgba(137, 180, 250, 0.5);
+  opacity: 0.7;
+  animation: drift 10s linear infinite;
+}
+.theme-code .coming-soon {
+  color: #a6adc8; /* Subtext */
+  font-size: 1rem;
+}
+.theme-code .cursor {
+   background-color: #f5e0dc; /* Rosewater cursor */
+   box-shadow: none;
+   width: 8px;
+   height: 1.1em;
+   vertical-align: text-bottom;
+}
+.theme-code .garden-quotes {
+  color: #cba6f7; /* Mauve */
+  font-family: 'Source Serif 4', serif; /* Serif for quotes */
+  font-size: 0.9rem;
+  font-style: italic;
+  text-shadow: none;
+}
+.theme-code .counters {
+  color: #94e2d5; /* Teal */
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Footer Styling */
+.theme-code .garden-footer-nav,
+.theme-code .garden-license-footer,
+.theme-code .portal-link {
+    color: #a6adc8; /* Subtext */
+    opacity: 0.6;
+    font-size: 0.8rem;
+    font-family: 'Fira Code', monospace;
+}
+.theme-code .garden-footer-nav a,
+.theme-code .garden-license-footer a,
+.theme-code .portal-link a {
+    color: #89b4fa; /* Blue links */
+}
+.theme-code .garden-footer-nav a:hover,
+.theme-code .garden-license-footer a:hover,
+.theme-code .portal-link a:hover {
+    color: #f9e2af; /* Yellow hover */
+    text-decoration: underline;
+}
+
+/* Hide CRT effect */
+body.theme-code.crt::after {
+    display: none;
+}
+
+/* Hide BBS elements */
+body.theme-code .bbs-interaction {
+    display: none;
+}
