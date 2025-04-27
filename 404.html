@@ -1,1 +1,97 @@
-<!-- 404.html created -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Lost in the Gardens 🌸🚀</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+  <style>
+    :root {
+      --green: limegreen;
+      --cyan: cyan;
+      --black: #000;
+      --font-mono: 'Courier New', Courier, monospace;
+    }
+    body {
+      background: var(--black);
+      color: var(--green);
+      font-family: var(--font-mono);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+      white-space: pre-wrap; /* Allow wrapping */
+      overflow: hidden; /* Hide potential overflows */
+    }
+    /* Optional CRT Flicker Effect */
+    body::after {
+      content: "";
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        rgba(0, 255, 0, 0.02) 0px, rgba(0, 255, 0, 0.02) 2px,
+        transparent 2px, transparent 4px
+      );
+      mix-blend-mode: overlay;
+      opacity: 0.3;
+      animation: flicker 0.2s infinite;
+      z-index: -1; /* Behind content */
+    }
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 0.3; }
+      20%, 22%, 55% { opacity: 0.4; }
+    }
+
+    .error-code {
+      font-size: 5rem; /* Large 404 */
+      font-weight: bold;
+      color: var(--cyan);
+      text-shadow: 0 0 8px var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+    .message {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .return-link a {
+      color: var(--cyan);
+      text-decoration: none;
+      border: 1px solid var(--cyan);
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .return-link a:hover {
+      background: var(--cyan);
+      color: var(--black);
+      text-decoration: none;
+    }
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+        .error-code { font-size: 4rem; }
+        .message { font-size: 1rem; }
+        .return-link a { font-size: 0.9rem; padding: 0.4rem 0.8rem;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-code">404</div>
+  <div class="message">
+    🌸 LOST IN THE GARDENS 🌸
+    <br><br>
+    The path you took seems overgrown...<br>
+    Perhaps the seeds drifted elsewhere?
+  </div>
+  <div class="return-link">
+    <a href="/playground/index.html">🚀 Return to the Main Garden Path</a>
+    </div>
+
+</body>
+</html>

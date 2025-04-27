@@ -1,0 +1,67 @@
+/* 🌸 RetroVerse Gardens Starter Theme 🌿 */
+/* Grown with patience. Styled with wonder. */
+/*
+   To create your own Garden Theme:
+
+   1. Copy this file (e.g., name it autumn.css, bloom.css, etc.)
+   2. Customize background, text, and link colors softly
+   3. Optional: Add gentle background textures
+   4. Keep structure lightweight and breathable
+   5. Honor the spirit of slow exploration and living worlds
+
+   🌱 Themes are not rushed — they bloom quietly over time.
+*/
+
+
+body {
+  background: #ffffff; /* Default clean background */
+  color: #000000; /* Default text color */
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+h1, h2, h3 {
+  color: #333333;
+}
+
+a {
+  color: #006400; /* Dark green links */
+  text-decoration: underline dotted;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #228B22; /* Forest green on hover */
+}
+
+footer {
+  margin-top: 4rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+nav, .garden-footer-nav, .portal-link {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.garden-footer-nav a, .portal-link a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.garden-footer-nav a:hover, .portal-link a:hover {
+  color: #228B22;
+  text-decoration: underline dotted;
+}
+
+/* Optional background fade (replace or delete if not needed) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: none; /* Empty by default */
+  opacity: 0;
+  pointer-events: none;
+}
