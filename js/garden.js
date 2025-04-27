@@ -1,33 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- Configuration ---
-  const themes = {
-    desktop: ['crt', 'pixel', 'neon', 'zen', 'code', 'space'], // Add theme slugs here
-    mobile: ['pixel', 'neon', 'zen', 'code', 'space'] // Exclude CRT/BBS for mobile
-    // Add more theme slugs as you create their CSS files in css/themes/
+  const themesConfig = {
+    desktop: ['crt', 'pixel', 'neon', 'zen'], // Add more theme slugs
+    mobile: ['pixel', 'neon', 'zen'],
+    defaultDesktop: 'crt',
+    defaultMobile: 'pixel'
   };
-  const defaultThemeDesktop = 'crt';
-  const defaultThemeMobile = 'pixel'; // Example: start mobile with Pixel theme
-
-  const bootMessages = [
+  const bootMessages = [ /* ... Keep as before ... */
     "Initializing RetroVerse BIOS v1.0...", "Loading Memory Banks...", "Checking Disk Drives...",
     "Bootstrapping Modules...", "Activating CRT Terminal...", "Deploying Landing Interface...",
     "Planting Dream Seeds...", "Tending Digital Soil...", "Waking the Hidden Grove..."
   ];
-
-  const gardenQuotes = [
+  const gardenQuotes = [ /* ... Keep as before ... */
     "🌱 Seeds become worlds.", "🌸 Patience grows ideas.", "🚀 Dreams take root here.",
     "🌿 Even the smallest bloom matters.", "🌻 Tended creativity becomes beauty.",
     "🍃 Growth whispers to those who listen.", "🌷 From one thought, a whole garden.",
     "✨ Where wonder lingers, magic blooms.", "🌌 Grow beyond the known stars."
   ];
-
-  const menuLinks = { // For BBS theme interaction (if re-added later) or future use
+  const menuLinks = { /* ... Keep as before ... */
     '1': "#books", '2': "#games", '3': "#tools", '4': "#apps",
     '5': "index.html", '6': "#resume", '7': "#github"
   };
-
   const FLOWERS_TO_UNLOCK_GROVE = 20;
+  const COUNT_API_NAMESPACE = 'retroverse-gardens';
 
   // --- DOM Element References ---
   const body = document.body;
@@ -41,69 +37,68 @@ document.addEventListener('DOMContentLoaded', () => {
   const uniqueCountElement = document.getElementById('unique-count');
   const plantCountElement = document.getElementById('plant-count');
   const secretPortalArea = document.getElementById('secret-portal-area');
-  const bbsInputElement = document.getElementById('bbs-input'); // Keep reference if BBS interaction added later
-  const bbsMessageElement = document.getElementById('bbs-message'); // Keep reference
-  const audioBreeze = document.getElementById('breeze'); // Optional sound
+  const bbsInputElement = document.getElementById('bbs-input');
+  const bbsMessageElement = document.getElementById('bbs-message');
+  const audioBreeze = document.getElementById('breeze');
+  // Grove specific elements (check if they exist)
+  const petalRainContainer = document.getElementById('rain');
+  const hiddenWhisperTrigger = document.querySelector('.hidden-whisper');
+  const hiddenWhisperMessage = document.getElementById('whisper-message');
+
 
   // --- State Variables ---
   let currentThemeIndex = 0;
-  let flowerCount = 0; // Local count for unlocking grove
+  let flowerCount = parseInt(localStorage.getItem('plantedFlowerCount') || '0', 10); // Load local count for unlock
   let availableThemes = [];
-  let isMobile = window.matchMedia("(max-width: 768px)").matches; // Broader breakpoint
+  let isMobile = false;
 
   // --- Helper Functions ---
 
-  // Animate Counters Gently
-  function animateCount(element, finalValue, duration = 2000) {
+  function animateCount(element, finalValue, duration = 2000) { /* ... Keep as before ... */
     if (!element) return;
     let startTimestamp = null;
-    const startValue = 0;
-    // Ensure finalValue is a number, default to 0 if not
-    const endValue = Number.isFinite(finalValue) ? finalValue : 0;
+    const startValue = parseInt(element.textContent.replace(/,/g, '') || '0', 10) || 0;
+    const endValue = Number.isFinite(finalValue) ? finalValue : startValue;
     const range = endValue - startValue;
-
+    if (range === 0) { element.textContent = endValue.toLocaleString(); return; }
     function step(timestamp) {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      element.textContent = Math.floor(startValue + progress * range).toLocaleString(); // Format number
-
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        element.textContent = endValue.toLocaleString(); // Ensure exact final number
-      }
+      element.textContent = Math.floor(startValue + progress * range).toLocaleString();
+      if (progress < 1) { window.requestAnimationFrame(step); }
+      else { element.textContent = endValue.toLocaleString(); }
     }
     window.requestAnimationFrame(step);
   }
 
-  // Set Theme Function (updates CSS link)
-  function setTheme(themeSlug) {
-    if (!themeStyleLink) return;
+  function setTheme(themeSlug) { /* ... Keep as before ... */
+    if (!themeStyleLink || !themeSlug) return;
     themeStyleLink.setAttribute('href', `css/themes/${themeSlug}.css`);
-    // Also update body class if needed for specific JS/CSS overrides not in theme files
-    body.className = `theme-${themeSlug}`; // Remove old theme classes first
-    if (themeSlug === 'crt' && !isMobile) { // Keep crt effect class if needed
-        body.classList.add('crt');
-    } else {
-        body.classList.remove('crt');
+    body.className = `theme-${themeSlug}`; // Base class name reflects theme
+    if (themeSlug === 'crt' && !isMobile) {
+      body.classList.add('crt'); // Add crt effect class if needed
     }
+     // Add page specific class if needed (e.g. for hidden grove)
+     if (document.title.includes("Hidden Grove")) { // Simple check based on title
+         body.classList.add('page-hidden-grove');
+     } else if (document.title.includes("Garden Journal")) {
+         body.classList.add('page-garden-journal');
+     } // etc.
+    localStorage.setItem('gardenTheme', themeSlug);
     console.log(`Theme set to: ${themeSlug}`);
   }
 
-  // Toggle Theme Function
-  function toggleTheme() {
+
+  function toggleTheme() { /* ... Keep as before ... */
     currentThemeIndex = (currentThemeIndex + 1) % availableThemes.length;
     setTheme(availableThemes[currentThemeIndex]);
   }
-  // Make toggleTheme globally accessible for the button
-  window.toggleTheme = toggleTheme;
+  window.toggleTheme = toggleTheme; // Make global
 
-  // Typing Effect
-  function typeWriter(element, text, speed = 100) {
+  function typeWriter(element, text, speed = 100) { /* ... Keep as before ... */
     if (!element || !cursorElement) return;
-    // Clear existing text except cursor
     while (element.firstChild && element.firstChild !== cursorElement) {
-        element.removeChild(element.firstChild);
+      element.removeChild(element.firstChild);
     }
     let i = 0;
     function typing() {
@@ -112,194 +107,219 @@ document.addEventListener('DOMContentLoaded', () => {
         i++;
         setTimeout(typing, speed);
       } else {
-        cursorElement.style.animationPlayState = 'running'; // Resume blinking
+         if(cursorElement) cursorElement.style.animationPlayState = 'running';
       }
     }
-    cursorElement.style.animationPlayState = 'paused'; // Pause blinking while typing
+     if(cursorElement) cursorElement.style.animationPlayState = 'paused';
     typing();
   }
 
-  // Show Random Garden Quote
-  function showRandomQuote() {
-    if (!gardenQuotesElement) return;
+  function showRandomQuote() { /* ... Keep as before ... */
+    if (!gardenQuotesElement || gardenQuotes.length === 0) return;
     const randomQuote = gardenQuotes[Math.floor(Math.random() * gardenQuotes.length)];
-    gardenQuotesElement.textContent = randomQuote;
-    // Trigger reflow to restart animation - optional
-    gardenQuotesElement.style.animation = 'none';
-    void gardenQuotesElement.offsetWidth; // Reflow trick
-    gardenQuotesElement.style.animation = '';
+    gardenQuotesElement.style.opacity = 0;
+    setTimeout(() => {
+        gardenQuotesElement.textContent = randomQuote;
+        gardenQuotesElement.style.opacity = 1;
+        gardenQuotesElement.style.animation = 'none';
+        void gardenQuotesElement.offsetWidth;
+        gardenQuotesElement.style.animation = '';
+    }, 500);
   }
 
-  // Plant Flower Function
-  function plantFlower(event) {
-     // Check if the click is on the main container or background, not on interactive elements
-     if (event.target.closest('button, a, input, .secret-portal')) {
-        return; // Don't plant on interactive elements
+  // Plant Flower Function (now also saves count locally)
+  function plantFlower(event) { /* ... Keep mostly as before ... */
+     if (event.target.closest('button, a, input, .secret-portal, .garden-footer-nav, .theme-toggle')) {
+        return;
      }
-
-     if (!plantedFlowersContainer) return;
-
+     // ... (rest of flower creation and positioning logic as before) ...
+     // Example using appending to body with fixed positioning:
      const newFlower = document.createElement('div');
      newFlower.className = 'flower';
-     // Position relative to the click within the container if desired, or just add to field
-     // Example: planting within the flower field div
-     const rect = plantedFlowersContainer.getBoundingClientRect();
-     newFlower.style.position = 'absolute'; // Position dynamically
-     // Adjust click position relative to the container/body if needed
-     newFlower.style.left = `${event.clientX - rect.left}px`; // Example positioning
-     newFlower.style.top = `${event.clientY - rect.top}px`; // Example positioning
+     newFlower.style.position = 'fixed';
+     newFlower.style.left = `${event.clientX - 5}px`; // Adjust for flower size center
+     newFlower.style.top = `${event.clientY - 5}px`;
+     newFlower.style.animation = 'grow 0.5s ease-out forwards, sway 6s ease-in-out infinite 0.5s';
+     document.body.appendChild(newFlower);
 
-     // Fallback if positioning is complex: just append to the container
-     // plantedFlowersContainer.appendChild(newFlower);
+     // Remove oldest flower if too many (optional performance tweak)
+     const maxFlowers = 50;
+     const currentPlanted = document.querySelectorAll('body > .flower'); // Select only directly planted flowers
+     if(currentPlanted.length > maxFlowers) {
+         document.body.removeChild(currentPlanted[0]);
+     }
 
-     // **Correction:** Append to the designated container, use relative positioning within it.
-     const flowerField = document.querySelector('.flower-field');
-     if (flowerField) {
-         const fieldRect = flowerField.getBoundingClientRect();
-         const xPos = event.clientX - fieldRect.left;
-         const yPos = event.clientY - fieldRect.top;
 
-         // Constrain positions within the field if needed
-         if (xPos >= 0 && xPos <= fieldRect.width && yPos >= 0 && yPos <= fieldRect.height) {
-            newFlower.style.position = 'absolute';
-            newFlower.style.left = `${xPos}px`;
-            newFlower.style.top = `${yPos}px`;
-            // Override animation temporarily to make it 'appear'
-            newFlower.style.animation = 'grow 0.5s ease-out forwards, sway 6s ease-in-out infinite 0.5s';
-            plantedFlowersContainer.appendChild(newFlower); // Append to the dedicated div
-            flowerCount++;
-            // Increment API counter
-            fetch('https://api.countapi.xyz/hit/retroverse-gardens/flowers')
-              .then(response => response.json())
-              .then(data => animateCount(plantCountElement, data.value));
+     // Increment counters
+     flowerCount++;
+     localStorage.setItem('plantedFlowerCount', flowerCount); // Save locally for unlock persistence
+     fetch(`https://api.countapi.xyz/hit/${COUNT_API_NAMESPACE}/flowers`)
+      .then(response => response.json())
+      .then(data => animateCount(plantCountElement, data.value))
+      .catch(error => console.error("Error incrementing plant count:", error));
 
-            // Check for secret grove unlock
-            if (flowerCount === FLOWERS_TO_UNLOCK_GROVE && !document.querySelector('.secret-portal')) {
-              unlockSecretGrove();
-            }
-         }
+     // Check for secret grove unlock
+     if (flowerCount >= FLOWERS_TO_UNLOCK_GROVE && !document.querySelector('.secret-portal')) {
+      unlockSecretGrove();
      }
   }
 
-  // Unlock Secret Grove
-  function unlockSecretGrove() {
+  function unlockSecretGrove() { /* ... Keep as before ... */
       if (!secretPortalArea) return;
-      const secretPortal = document.createElement('div');
-      secretPortal.className = 'secret-portal'; // Use class for styling
-      secretPortal.innerHTML = `🌟 A Hidden Grove Awaits... <br><button onclick='window.location.href="hidden-grove.html"'>Enter</button>`;
-      secretPortalArea.appendChild(secretPortal);
+      secretPortalArea.innerHTML = `
+        <div class="secret-portal">
+          🌟 A Hidden Grove Awaits... <br>
+          <button onclick='window.location.href="hidden-grove.html"'>Enter</button>
+        </div>`;
   }
-   // Make globally accessible if button is added dynamically
-   window.goHiddenGrove = () => { window.location.href="hidden-grove.html"; };
+  window.goHiddenGrove = () => { window.location.href="hidden-grove.html"; };
 
 
-  // Fetch Counters Function
-  function fetchCounters() {
-    // Total Visits
-    fetch('https://api.countapi.xyz/hit/retroverse-gardens/visits')
-      .then(response => response.json())
-      .then(data => animateCount(visitCountElement, data.value))
-      .catch(error => console.error("Error fetching visit count:", error));
-
-    // Unique Visitors (Species)
-    fetch('https://api.countapi.xyz/get/retroverse-gardens/visitors') // Use 'get' to not increment unique count on every load
-      .then(response => response.json())
-      .then(data => animateCount(uniqueCountElement, data.value))
-      .catch(error => console.error("Error fetching unique count:", error));
-
-    // Flowers Planted
-    fetch('https://api.countapi.xyz/get/retroverse-gardens/flowers') // Use 'get' for initial load
-      .then(response => response.json())
-      .then(data => animateCount(plantCountElement, data.value))
-      .catch(error => console.error("Error fetching plant count:", error));
+  function fetchCounters() { /* ... Keep as before ... */
+    Promise.all([
+      fetch(`https://api.countapi.xyz/hit/${COUNT_API_NAMESPACE}/visits`).then(res => res.json()),
+      fetch(`https://api.countapi.xyz/get/${COUNT_API_NAMESPACE}/visitors`).then(res => res.json()),
+      fetch(`https://api.countapi.xyz/get/${COUNT_API_NAMESPACE}/flowers`).then(res => res.json())
+    ])
+    .then(([visitsData, uniqueData, plantsData]) => {
+      animateCount(visitCountElement, visitsData.value);
+      animateCount(uniqueCountElement, uniqueData.value);
+      animateCount(plantCountElement, plantsData.value);
+    })
+    .catch(error => console.error("Error fetching counters:", error));
+     fetch(`https://api.countapi.xyz/hit/${COUNT_API_NAMESPACE}/visitors`).catch(e => console.error("Error hitting unique counter", e));
   }
+
+  // --- Hidden Grove Specific Functions ---
+  function startPetalRain() {
+      if (!petalRainContainer) return;
+      const numPetals = 25;
+      for (let i = 0; i < numPetals; i++) {
+          const petal = document.createElement('div');
+          petal.className = 'petal';
+          petal.style.left = Math.random() * 100 + 'vw';
+          petal.style.animationDuration = (8 + Math.random() * 7) + 's';
+          petal.style.animationDelay = Math.random() * 5 + 's';
+          petal.style.opacity = 0.4 + Math.random() * 0.4;
+          // You might need to adjust the animation keyframes ('fall') in garden.css
+          petalRainContainer.appendChild(petal);
+      }
+      console.log("Petal rain started.");
+  }
+
+  function setupWhisperReveal() {
+      if (!hiddenWhisperTrigger || !hiddenWhisperMessage) return;
+      hiddenWhisperTrigger.addEventListener('click', () => {
+          hiddenWhisperMessage.style.display = 'block';
+          hiddenWhisperTrigger.style.display = 'none'; // Hide trigger after click
+           console.log("Whisper revealed.");
+      });
+  }
+
 
   // --- Initialization on Load ---
   function initGarden() {
     isMobile = window.matchMedia("(max-width: 768px)").matches;
-    availableThemes = isMobile ? themes.mobile : themes.desktop;
-    const defaultTheme = isMobile ? defaultThemeMobile : defaultThemeDesktop;
+    availableThemes = isMobile ? themesConfig.mobile : themesConfig.desktop;
 
     // Set initial theme
     const savedTheme = localStorage.getItem('gardenTheme');
+    let initialTheme = isMobile ? themesConfig.defaultMobile : themesConfig.defaultDesktop;
     if (savedTheme && availableThemes.includes(savedTheme)) {
-      const savedIndex = availableThemes.indexOf(savedTheme);
-      currentThemeIndex = savedIndex !== -1 ? savedIndex : 0;
-      setTheme(savedTheme);
-    } else {
-      currentThemeIndex = availableThemes.indexOf(defaultTheme);
-      if (currentThemeIndex === -1) currentThemeIndex = 0; // Fallback
-      setTheme(availableThemes[currentThemeIndex]);
+      initialTheme = savedTheme;
     }
+    currentThemeIndex = availableThemes.indexOf(initialTheme);
+    if (currentThemeIndex === -1) currentThemeIndex = 0;
+    setTheme(availableThemes[currentThemeIndex]); // Applies theme CSS and body class
 
+    // Check if we are on a specific page (like Hidden Grove)
+    const isOnHiddenGrove = body.classList.contains('page-hidden-grove');
+    const isOnGardenIndex = !isOnHiddenGrove && !body.classList.contains('page-garden-journal'); // Adjust if more pages added
 
-    // Handle BIOS screen
+    // Handle BIOS screen (Only on main Garden page on Desktop)
     if (biosLoadingDiv) {
-        if (!isMobile) {
+        if (!isMobile && isOnGardenIndex) { // Show BIOS only on main page desktop
             randomBootMessage();
             setTimeout(() => {
-                biosLoadingDiv.style.display = 'none'; // Hide instead of remove to avoid layout shifts
-            }, 1500); // BIOS delay
+                biosLoadingDiv.style.opacity = '0';
+                setTimeout(() => biosLoadingDiv.style.display = 'none', 500);
+            }, 1500);
         } else {
-            biosLoadingDiv.style.display = 'none'; // Hide immediately on mobile
+            biosLoadingDiv.style.display = 'none'; // Hide immediately otherwise
         }
     }
 
-
-    // Start typing effect after a delay
-    if (typingTextElement) {
+    // Start typing effect (Only on main Garden page)
+    if (typingTextElement && isOnGardenIndex) {
       setTimeout(() => {
         typeWriter(typingTextElement, "More Blooms Coming...");
-      }, isMobile ? 1000 : 2500); // Faster start on mobile
+      }, isMobile ? 500 : 2000);
     }
 
-    // Show first quote and set interval
-    showRandomQuote();
-    setInterval(showRandomQuote, 8000);
+    // Quotes (Only on main Garden page)
+    if(gardenQuotesElement && isOnGardenIndex) {
+        showRandomQuote();
+        setInterval(showRandomQuote, 10000);
+    }
 
-    // Fetch initial counter values
-    fetchCounters();
+    // Fetch counters (Only on main Garden page)
+    if(visitCountElement && uniqueCountElement && plantCountElement && isOnGardenIndex){
+        fetchCounters();
+    }
 
-    // Add flower planting listener
-    document.body.addEventListener('click', plantFlower);
+    // Add flower planting listener (Only on main Garden page)
+    if(isOnGardenIndex){
+        document.body.addEventListener('click', plantFlower);
+         // Check unlock status on load (in case they planted 20 before)
+        if (flowerCount >= FLOWERS_TO_UNLOCK_GROVE && !document.querySelector('.secret-portal')) {
+             unlockSecretGrove();
+        }
+    }
 
-    // Add sound enablement listener
+    // Hidden Grove specific setup
+    if(isOnHiddenGrove) {
+        startPetalRain();
+        setupWhisperReveal();
+    }
+
+    // Enable sound (listener added once for the whole playground)
     if (audioBreeze) {
-        const enableSound = () => {
-            audioBreeze.muted = false;
-            audioBreeze.play().catch(e => console.error("Audio play failed:", e));
-            // Remove listener after first interaction
-            document.body.removeEventListener('click', enableSound);
-            document.body.removeEventListener('keypress', enableSound);
-        };
-        document.body.addEventListener('click', enableSound, { once: true });
-        document.body.addEventListener('keypress', enableSound, { once: true });
+      const enableSound = () => {
+        audioBreeze.muted = false;
+        audioBreeze.play().catch(e => console.error("Audio play failed:", e));
+      };
+      document.body.addEventListener('click', enableSound, { once: true });
+      document.body.addEventListener('keypress', enableSound, { once: true });
     }
 
-    // Add BBS input listener (if element exists)
-    if (bbsInputElement) {
+    // Add BBS input listener (only if the element exists and CRT theme is active)
+    if (bbsInputElement && body.classList.contains('theme-crt')) {
         bbsInputElement.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 const val = bbsInputElement.value.trim();
                 if (menuLinks[val]) {
-                    // Navigate or trigger action
-                     window.location.hash = menuLinks[val].substring(1); // Simple hash navigation
-                     // Or: document.querySelector(menuLinks[val]).scrollIntoView();
+                     // Simple hash navigation example for SPA feel within page
+                     // Or could trigger JS functions based on number
+                     window.location.hash = menuLinks[val].substring(1);
+                     console.log(`Navigating to section: ${menuLinks[val]}`);
                 } else {
                     if(bbsMessageElement) bbsMessageElement.textContent = "Invalid Option.";
                     setTimeout(() => {
                         if(bbsMessageElement) bbsMessageElement.textContent = "";
-                        bbsInputElement.value = "";
-                        // bbsInputElement.focus(); // Re-focus might be annoying
+                        // bbsInputElement.focus(); // Maybe don't refocus
                     }, 1500);
                 }
-                bbsInputElement.value = ""; // Clear input after Enter
+                bbsInputElement.value = "";
             }
         });
+        bbsInputElement.focus(); // Auto-focus on load in CRT mode
     }
 
+
+    console.log("RetroVerse Gardens Initialized. Current Theme:", availableThemes[currentThemeIndex]);
   }
 
-  initGarden(); // Run initialization
+  // --- Run Initialization ---
+  initGarden();
 
 }); // End DOMContentLoaded
