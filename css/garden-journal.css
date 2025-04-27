@@ -1,0 +1,51 @@
+body.page-garden-journal {
+  /* Example: Use a slightly different background/font if desired */
+  background: #f9fff9; /* Soft paper-like */
+  color: #333; /* Darker text for readability */
+  font-family: Georgia, serif; /* Serif for journal feel */
+  text-align: left; /* Align text left for reading */
+}
+.page-garden-journal .container {
+  max-width: 800px; /* Good width for reading */
+}
+.page-garden-journal h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #2e7d32; /* Garden green */
+}
+.journal-entry {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-left: 4px solid #66bb6a; /* Green accent */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  white-space: pre-line; /* Respect line breaks in content */
+}
+.journal-entry:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.journal-date {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1b5e20; /* Darker green */
+}
+.journal-quote {
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: #388e3c; /* Mid-green */
+  text-align: right;
+}
+/* Footer adjustments if needed for this page */
+.page-garden-journal .garden-footer-nav a,
+.page-garden-journal .garden-license-footer a,
+.page-garden-journal .portal-link a {
+    color: #2e7d32;
+}
+.page-garden-journal .garden-footer-nav a:hover,
+.page-garden-journal .garden-license-footer a:hover,
+.page-garden-journal .portal-link a:hover {
+    color: #1b5e20;
+}
