@@ -39,35 +39,8 @@
       🌱 RetroVerse Gardens is shared under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>.
     </footer>
 
-     </div> <script src="../js/garden.js"></script>
-
-  <script>
-    const notesTextArea = document.getElementById('seed-notes');
-
-    // Load saved seeds on page load
-    window.addEventListener('load', () => {
-      const savedNotes = localStorage.getItem('seedBoxNotes'); // Use a unique key
-      if (savedNotes && notesTextArea) {
-        notesTextArea.value = savedNotes;
-      }
-    });
-
-    // Save seeds
-    function saveNotes() {
-      if (notesTextArea) {
-        localStorage.setItem('seedBoxNotes', notesTextArea.value);
-        alert('🌱 Seeds saved locally.'); // Simple confirmation
-      }
-    }
-
-    // Clear seeds
-    function clearNotes() {
-      if (notesTextArea && confirm('Are you sure you want to clear all saved seeds? This cannot be undone.')) {
-        notesTextArea.value = '';
-        localStorage.removeItem('seedBoxNotes');
-        alert('🗑️ Seeds cleared.');
-      }
-    }
-  </script>
-
+     </div>
+  <script src="../js/garden.js"></script>
+  <script src="../js/garden-shed/garden-shed.js"></script>
+  <script src="../js/garden-shed/seed-box.js"></script>
 </body>

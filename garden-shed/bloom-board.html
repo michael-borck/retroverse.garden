@@ -1,1 +1,49 @@
-<!-- bloom-board.html created -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Bloom Board — Seasonal Journal Pen</title>
+  <link rel="stylesheet" href="../css/garden.css">
+  <link rel="stylesheet" href="../css/garden-shed/garden-shed.css">
+  <link rel="stylesheet" href="../css/garden-shed/bloom-board.css">
+  <link id="theme-style" rel="stylesheet" href="../css/themes/crt.css"> <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+
+</head>
+
+<body class="page-bloom-board"> <div class="container">
+
+    <h1>🌸 Bloom Board 🖋️</h1>
+    <p class="intro-text">
+      Dip your pen into the season's harvest. Generate a poetic journal entry<br>
+      reflecting the Garden's growth, ready to be added to the official Journal.
+    </p>
+
+    <button id="generate-button" onclick="generateEntry()">📜 Generate Seasonal Entry</button>
+
+    <div class="output-area" id="journal-output">
+      <em>Your generated seasonal entry will appear here... Click the button above.</em>
+      <button class="copy-button" onclick="copyEntry()" title="Copy to Clipboard" style="display: none;">Copy</button>
+    </div>
+
+    <nav class="garden-footer-nav">
+       <a href="https://borck.dev">🏡 Home</a> |
+       <a href="../index.html">🌱 Gardens</a> |
+       <a href="../garden-journal.html">📜 Journal</a> |
+       <a href="../hidden-grove.html">🌿 Hidden Grove</a> |
+       <a href="index.html">🛠️ Shed</a> </nav>
+
+    <div class="portal-link">
+      <a href="../index.html">← Return to the Main Garden</a>
+    </div>
+
+    <footer class="garden-license-footer">
+      🌱 RetroVerse Gardens is shared under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>.
+    </footer>
+
+     </div>
+  <script src="../js/garden.js"></script>
+  <script src="../js/garden-shed/garden-shed.js"></script>
+  <script src="../js/garden-shed/bloom-board.js"></script>
+</body>
+</html>

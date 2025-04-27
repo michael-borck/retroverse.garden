@@ -1,0 +1,85 @@
+body.page-bloom-board {
+  background: #f9fff9; /* Soft paper/parchment */
+  color: #333;
+  font-family: Georgia, serif; /* Journalistic feel */
+  text-align: left;
+}
+.page-bloom-board .container {
+  max-width: 800px;
+}
+.page-bloom-board h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2e7d32; /* Garden green */
+}
+ .page-bloom-board .intro-text {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: #555;
+ }
+.page-bloom-board button#generate-button { /* Specific ID for styling */
+  display: block; /* Center button */
+  margin: 1rem auto 2rem auto; /* Center and add space */
+  background: #66bb6a; /* Softer green */
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  font-family: inherit;
+}
+.page-bloom-board button#generate-button:hover {
+  background: #4caf50; /* Slightly darker green */
+}
+.output-area {
+  background: #ffffff;
+  border: 1px dashed #ccc; /* Dashed border for 'draft' feel */
+  padding: 1.5rem;
+  margin-top: 1rem;
+  min-height: 200px; /* Space for the entry */
+  white-space: pre-line; /* Respect line breaks */
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  position: relative; /* For copy button */
+}
+.output-area em { /* Style the placeholder text */
+    color: #999;
+}
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+.copy-button:hover {
+    opacity: 1;
+    background: #ddd;
+}
+ /* Footer adjustments */
+.page-bloom-board .garden-footer-nav a,
+.page-bloom-board .garden-license-footer a,
+.page-bloom-board .portal-link a {
+    color: #2e7d32;
+}
+ .page-bloom-board .garden-footer-nav a:hover,
+ .page-bloom-board .garden-license-footer a:hover,
+ .page-bloom-board .portal-link a:hover {
+    color: #1b5e20;
+}
+.page-bloom-board .garden-footer-nav,
+.page-bloom-board .garden-license-footer,
+.page-bloom-board .portal-link {
+    color: #555; opacity: 0.7;
+}
