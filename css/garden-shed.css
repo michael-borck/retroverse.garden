@@ -1,0 +1,78 @@
+body.page-garden-shed {
+  /* Example: Slightly different background/font for the shed */
+  background: #f5f5f5; /* Light grey, workshop feel */
+  color: #333; /* Darker text */
+  font-family: 'Arial', sans-serif; /* More utilitarian font */
+  text-align: left;
+}
+.page-garden-shed .container {
+  max-width: 1000px; /* Slightly wider for grid */
+}
+.page-garden-shed h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2e7d32; /* Garden green title */
+}
+ .page-garden-shed .intro-text {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    color: #555;
+ }
+.shed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust minmax */
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.tool-card {
+  background: #ffffff;
+  border-top: 5px solid #66bb6a; /* Green top border */
+  padding: 1.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%; /* Make cards same height */
+  display: flex;
+  flex-direction: column;
+}
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+.tool-card a { /* Make entire card clickable */
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.tool-name {
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  color: #2e7d32;
+}
+.tool-desc {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  flex-grow: 1; /* Push footer down */
+  line-height: 1.4;
+}
+
+/* Footer adjustments */
+.page-garden-shed .garden-footer-nav a,
+.page-garden-shed .garden-license-footer a,
+.page-garden-shed .portal-link a {
+    color: #2e7d32;
+}
+ .page-garden-shed .garden-footer-nav a:hover,
+ .page-garden-shed .garden-license-footer a:hover,
+ .page-garden-shed .portal-link a:hover {
+    color: #1b5e20;
+}
+.page-garden-shed .garden-footer-nav,
+.page-garden-shed .garden-license-footer,
+.page-garden-shed .portal-link {
+    color: #555; opacity: 0.7;
+}
