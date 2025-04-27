@@ -1,0 +1,75 @@
+body.page-seed-box {
+  background: #f0f4f0; /* Very light green-grey */
+  color: #333;
+  font-family: 'Verdana', sans-serif; /* Simple sans-serif */
+  text-align: left; /* Align text left for notes */
+}
+.page-seed-box .container {
+  max-width: 800px;
+}
+.page-seed-box h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2e7d32; /* Garden green */
+}
+.page-seed-box .intro-text {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: #555;
+ }
+textarea#seed-notes {
+  width: 100%;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  height: 40vh; /* Good height for notes */
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 1px solid #ccc; /* Simple border */
+  border-radius: 4px;
+  background: #ffffff;
+  resize: vertical;
+  margin-bottom: 1rem;
+  font-family: inherit; /* Use body font */
+}
+.button-group {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.button-group button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 0.5rem;
+  transition: background 0.3s;
+  font-family: inherit;
+}
+.button-group button:hover {
+  background: #388e3c;
+}
+.button-group button.clear-button {
+    background: #c62828; /* Red for clear */
+}
+ .button-group button.clear-button:hover {
+    background: #d32f2f;
+}
+ /* Footer adjustments */
+.page-seed-box .garden-footer-nav a,
+.page-seed-box .garden-license-footer a,
+.page-seed-box .portal-link a {
+    color: #2e7d32;
+}
+ .page-seed-box .garden-footer-nav a:hover,
+ .page-seed-box .garden-license-footer a:hover,
+ .page-seed-box .portal-link a:hover {
+    color: #1b5e20;
+}
+.page-seed-box .garden-footer-nav,
+.page-seed-box .garden-license-footer,
+.page-seed-box .portal-link {
+    color: #555; opacity: 0.7;
+}

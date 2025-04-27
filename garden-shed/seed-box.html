@@ -1,1 +1,73 @@
-<!-- seed-box.html created -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌱 Seed Box — Planting Dreams</title>
+  <link rel="stylesheet" href="../css/garden.css">
+  <link rel="stylesheet" href="../css/garden-shed/garden-shed.css">
+  <link rel="stylesheet" href="../css/garden-shed/seed-box.css">
+  <link id="theme-style" rel="stylesheet" href="../css/themes/crt.css"> <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+</head>
+
+<body class="page-seed-box"> <div class="container">
+
+    <h1>🌱 Seed Box 🌱</h1>
+    <p class="intro-text">
+      Plant your dreams, ideas, and whispers for the RetroVerse Gardens here.<br>
+      (Saved locally to your browser — your private patch.)
+    </p>
+
+    <textarea id="seed-notes" placeholder="Plant your seeds of thought here..."></textarea>
+
+    <div class="button-group">
+      <button onclick="saveNotes()">💾 Save Seeds</button>
+      <button class="clear-button" onclick="clearNotes()">🗑️ Clear Seeds</button>
+    </div>
+
+    <nav class="garden-footer-nav">
+      <a href="https://borck.dev">🏡 Home</a> |
+      <a href="../index.html">🌱 Gardens</a> | <a href="../garden-journal.html">📜 Journal</a> |
+      <a href="../hidden-grove.html">🌿 Hidden Grove</a> |
+      <a href="index.html">🛠️ Shed</a> </nav>
+
+    <div class="portal-link">
+      <a href="../index.html">← Return to the Main Garden</a>
+    </div>
+
+    <footer class="garden-license-footer">
+      🌱 RetroVerse Gardens is shared under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>.
+    </footer>
+
+     </div> <script src="../js/garden.js"></script>
+
+  <script>
+    const notesTextArea = document.getElementById('seed-notes');
+
+    // Load saved seeds on page load
+    window.addEventListener('load', () => {
+      const savedNotes = localStorage.getItem('seedBoxNotes'); // Use a unique key
+      if (savedNotes && notesTextArea) {
+        notesTextArea.value = savedNotes;
+      }
+    });
+
+    // Save seeds
+    function saveNotes() {
+      if (notesTextArea) {
+        localStorage.setItem('seedBoxNotes', notesTextArea.value);
+        alert('🌱 Seeds saved locally.'); // Simple confirmation
+      }
+    }
+
+    // Clear seeds
+    function clearNotes() {
+      if (notesTextArea && confirm('Are you sure you want to clear all saved seeds? This cannot be undone.')) {
+        notesTextArea.value = '';
+        localStorage.removeItem('seedBoxNotes');
+        alert('🗑️ Seeds cleared.');
+      }
+    }
+  </script>
+
+</body>
