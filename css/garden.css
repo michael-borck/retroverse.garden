@@ -1,1 +1,313 @@
-<!-- garden.css created -->
+/* === Base Styles & Variables === */
+:root {
+  --green: limegreen;
+  --cyan: cyan;
+  --black: #000;
+  --white: #fff;
+  --soft-green: #66ff66;
+  --dark-grey: #111;
+  --font-mono: 'Courier New', Courier, monospace;
+  --font-serif: Georgia, serif;
+  /* Add other theme colors later if needed */
+  --pixel-bg: #c0ffc0;
+  --neon-pink: #ff00ff;
+  --zen-bg: #fdf6e3;
+  --zen-text: #333;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* Default font/color will be set by theme */
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.8s ease, color 0.8s ease;
+  /* Base class for structure, theme class added by JS */
+  font-size: 16px;
+}
+
+a {
+  color: var(--cyan); /* Default link color */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  text-decoration: underline dotted;
+  color: var(--white); /* Default hover */
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+/* === Shared Structural Elements === */
+
+.page-header {
+  margin-bottom: 2rem;
+  /* Visibility controlled by theme */
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  /* Color set by theme */
+}
+
+.page-header .intro {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  /* Color set by theme */
+}
+
+.main-navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.main-navigation .nav-item {
+  margin-bottom: 0.5rem;
+}
+
+.main-navigation .nav-item a {
+  font-size: 1.2rem;
+  display: inline-block;
+}
+/* Hide theme-specific spans by default */
+.main-navigation .nav-item .emoji,
+.main-navigation .nav-item .bbs-index {
+    display: none;
+}
+.main-navigation .nav-item .text {
+    display: inline; /* Default show text */
+}
+
+
+.bbs-interaction {
+    display: none; /* Hidden by default, shown only by CRT theme */
+    margin-top: 2rem;
+    border-top: 1px dashed var(--green);
+    padding-top: 1rem;
+}
+.bbs-prompt {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+#bbs-input {
+    /* Basic input styles */
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    width: 3ch;
+    text-align: center;
+    padding: 0.2rem;
+}
+#bbs-message {
+  font-size: 1rem;
+  margin-top: 1rem;
+  min-height: 1.2em;
+  color: red; /* Error color */
+}
+
+
+/* === Shared Garden Ambience Elements === */
+
+.garden-ambience {
+  margin-top: 3rem;
+  position: relative;
+}
+
+.flower-field {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 20px;
+}
+
+.flower {
+  width: 10px;
+  height: 10px;
+  background: var(--green); /* Base color, theme can override */
+  border-radius: 50%;
+  transform-origin: bottom center;
+  animation: grow 2s infinite alternate, sway 6s ease-in-out infinite;
+}
+.flower:nth-child(2) { animation-delay: 0.5s, 0.2s; }
+.flower:nth-child(3) { animation-delay: 1.0s, 0.4s; }
+.flower:nth-child(4) { animation-delay: 1.5s, 0.1s; }
+.flower:nth-child(5) { animation-delay: 0.2s, 0.3s; }
+/* Styles for dynamically planted flowers */
+#planted-flowers .flower {
+    position: absolute; /* Position planted flowers */
+    /* JS will set top/left */
+}
+
+
+.coming-soon {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  min-height: 1.5em;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: currentColor; /* Inherit color */
+  margin-left: 2px;
+  vertical-align: baseline;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+.seed-field {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 1rem;
+  pointer-events: none;
+}
+
+.seed {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--green); /* Base color */
+  border-radius: 50%;
+  animation: drift 8s linear infinite;
+}
+.seed:nth-child(1) { left: 20%; animation-delay: 0s; }
+.seed:nth-child(2) { left: 40%; animation-delay: 2s; }
+.seed:nth-child(3) { left: 60%; animation-delay: 4s; }
+.seed:nth-child(4) { left: 80%; animation-delay: 1s; }
+.seed:nth-child(5) { left: 30%; animation-delay: 3s; }
+
+.garden-quotes {
+  margin-top: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  min-height: 1.2em;
+  opacity: 0;
+  animation: quoteFade 8s ease-in-out infinite alternate;
+  /* Color set by theme */
+}
+
+.counters {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  /* Color set by theme */
+}
+.counter span { font-weight: bold; }
+
+#secret-portal-area .secret-portal {
+  margin-top: 3rem;
+  padding: 1rem;
+  border: 2px dashed var(--cyan);
+  color: var(--cyan);
+  font-size: 1.2rem;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+#secret-portal-area .secret-portal button {
+  margin-top: 1rem;
+  background: black;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+/* === Footer Elements === */
+.garden-footer-nav {
+  margin: 4rem auto 1rem auto;
+  font-size: 0.85rem;
+  opacity: 0.5;
+  text-align: center;
+}
+.garden-footer-nav a { margin: 0 0.5rem; }
+
+.garden-license-footer {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  text-align: center;
+}
+.garden-license-footer a { text-decoration: underline dotted; }
+
+/* === Theme Toggle Button === */
+.theme-toggle {
+  position: fixed;
+  top: 10px; right: 10px;
+  font-size: 0.8rem;
+  background: #111;
+  color: var(--green); /* Default color */
+  border: 1px solid var(--green); /* Default border */
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 1000;
+  font-family: var(--font-mono);
+  opacity: 0.7;
+  transition: opacity 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
+}
+.theme-toggle:hover { opacity: 1; }
+
+/* === Base Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes flicker { /* Used by CRT theme */
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 0.3; }
+  20%, 22%, 55% { opacity: 0.4; }
+}
+@keyframes grow {
+  0%   { transform: scaleY(0.1); opacity: 0; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+@keyframes sway {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes drift {
+  0%   { transform: translateY(0) translateX(0); opacity: 1; }
+  50%  { transform: translateY(-50px) translateX(10px); opacity: 0.7; }
+  100% { transform: translateY(-100px) translateX(-10px); opacity: 0; }
+}
+@keyframes blink {
+  to { background-color: transparent; } /* Make cursor blink */
+}
+@keyframes quoteFade {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 0.7; } /* Soft visibility */
+}
+@keyframes glow {
+  from { box-shadow: 0 0 5px var(--cyan); }
+  to   { box-shadow: 0 0 20px var(--cyan); }
+}
+
+
+/* === Mobile Adjustments === */
+@media (max-width: 600px) {
+  body { font-size: 14px; white-space: normal; }
+  .container { padding: 1rem; }
+  .page-header h1 { font-size: 2rem; }
+  .page-header .intro { font-size: 1rem; }
+  .main-navigation ul { margin: 1rem 0; }
+  .main-navigation .nav-item a { font-size: 1.1rem; }
+  .garden-ambience { margin-top: 2rem; }
+  .counters { font-size: 0.8rem; gap: 1rem; flex-direction: column; align-items: center;}
+  .garden-footer-nav { font-size: 0.8rem; margin-top: 2rem;}
+  .garden-license-footer { font-size: 0.7rem;}
+  .theme-toggle { font-size: 0.7rem; padding: 3px 6px; }
+}

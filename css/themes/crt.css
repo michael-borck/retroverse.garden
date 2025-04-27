@@ -1,0 +1,135 @@
+/* === CRT Theme Specific Styles === */
+
+body.theme-crt {
+  background: var(--black);
+  color: var(--green);
+  font-family: var(--font-mono);
+  white-space: pre-wrap; /* Crucial for BBS layout */
+}
+
+/* Apply CRT Flicker Overlay */
+body.theme-crt.crt::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    rgba(0, 255, 0, 0.02) 0px, rgba(0, 255, 0, 0.02) 2px,
+    transparent 2px, transparent 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  animation: flicker 0.2s infinite;
+  z-index: 999;
+}
+
+/* Hide standard header in CRT mode */
+body.theme-crt .page-header {
+  display: none;
+}
+
+/* Style navigation like a BBS menu */
+body.theme-crt .main-navigation ul {
+  text-align: left;
+  max-width: 500px; /* Adjust width as needed */
+  margin: 2rem auto;
+  border: 1px solid var(--green);
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  counter-reset: bbs-item; /* Initialize counter */
+}
+
+body.theme-crt .main-navigation .nav-item {
+  margin-bottom: 0.5rem;
+  line-height: 1.5; /* Spacing */
+}
+
+body.theme-crt .main-navigation .nav-item a {
+  color: var(--green);
+  text-decoration: none;
+  display: block; /* Make links take full width for hover effect */
+  padding: 0.1rem 0.3rem;
+}
+
+body.theme-crt .main-navigation .nav-item a:hover,
+body.theme-crt .main-navigation .nav-item a:focus {
+  background: var(--green);
+  color: var(--black);
+  text-decoration: none;
+  outline: none;
+}
+
+/* Style BBS menu items: "[1] Books" */
+body.theme-crt .main-navigation .nav-item a::before {
+  counter-increment: bbs-item; /* Increment counter */
+  content: '[' counter(bbs-item) '] '; /* Display counter */
+  color: var(--cyan); /* Different color for number */
+  display: inline-block;
+  width: 2.5em; /* Align numbers */
+}
+body.theme-crt .main-navigation .nav-item .emoji { display: none; } /* Hide emoji */
+body.theme-crt .main-navigation .nav-item .text { display: inline; } /* Show text */
+
+
+/* Show and Style BBS interaction area */
+body.theme-crt .bbs-interaction {
+  display: block; /* Show */
+  max-width: 500px;
+  margin: 2rem auto;
+  border-top: 1px dashed var(--green);
+  padding-top: 1rem;
+  text-align: left;
+}
+
+body.theme-crt #bbs-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--green);
+  color: var(--green);
+  width: 3ch; /* Adjust width */
+}
+body.theme-crt #bbs-message {
+  color: #ff4444; /* Brighter red for errors */
+}
+
+/* Ensure ambience elements use CRT colors */
+body.theme-crt .flower,
+body.theme-crt .seed {
+    background: var(--green);
+}
+body.theme-crt .coming-soon,
+body.theme-crt .garden-quotes,
+body.theme-crt .counters {
+    color: var(--soft-green);
+}
+body.theme-crt .cursor {
+    background-color: var(--green);
+}
+
+
+/* Adjust nav bar and footer for CRT */
+body.theme-crt .garden-footer-nav,
+body.theme-crt .garden-license-footer {
+    color: var(--green);
+}
+body.theme-crt .garden-footer-nav a:hover,
+body.theme-crt .garden-license-footer a:hover {
+    color: var(--cyan);
+}
+
+
+/* Mobile CRT adjustments */
+@media (max-width: 600px) {
+  body.theme-crt .main-navigation ul {
+      max-width: 90%;
+      padding: 0.5rem 1rem;
+      white-space: normal; /* Allow wrapping inside BBS box */
+  }
+  body.theme-crt .main-navigation .nav-item a::before {
+      width: 2em; /* Adjust alignment */
+  }
+   body.theme-crt .bbs-interaction {
+      max-width: 90%;
+  }
+}
