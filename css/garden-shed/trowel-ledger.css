@@ -1,0 +1,118 @@
+/* Styles specific to the Trowel & Ledger tool page */
+
+body.page-trowel-ledger {
+  background: #fafafa; /* Very light grey, almost white */
+  color: #444; /* Readable dark grey */
+  font-family: 'Times New Roman', Times, serif; /* Classic ledger/book feel */
+  text-align: left;
+}
+
+.page-trowel-ledger .container {
+  max-width: 800px;
+}
+
+.page-trowel-ledger h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #4CAF50; /* Softer green */
+  font-weight: normal;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.page-trowel-ledger .intro-text {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1rem;
+  color: #666;
+  font-style: italic;
+}
+
+.page-trowel-ledger .garden-nav {
+    margin-bottom: 3rem; /* More space after nav */
+    text-align: center;
+    opacity: 0.7;
+}
+.page-trowel-ledger .garden-nav a {
+    color: #4CAF50;
+}
+.page-trowel-ledger .garden-nav a:hover {
+    color: #2e7d32;
+}
+
+
+/* Style the instructions area */
+.instructions-area {
+  background: #fff;
+  padding: 2rem;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.instructions-area h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #2e7d32;
+  font-weight: normal;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.instructions-area ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.instructions-area li {
+  margin-bottom: 0.75rem;
+}
+
+.instructions-area code {
+  background-color: #f0f0f0;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+}
+
+.instructions-area a {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+.instructions-area a:hover {
+    color: #2e7d32;
+}
+
+
+/* Footer adjustments specific to this page */
+.page-trowel-ledger .garden-footer-nav a,
+.page-trowel-ledger .garden-license-footer a,
+.page-trowel-ledger .portal-link a {
+    color: #4CAF50;
+}
+
+.page-trowel-ledger .garden-footer-nav a:hover,
+.page-trowel-ledger .garden-license-footer a:hover,
+.page-trowel-ledger .portal-link a:hover {
+    color: #2e7d32;
+}
+
+.page-trowel-ledger .garden-footer-nav,
+.page-trowel-ledger .garden-license-footer,
+.page-trowel-ledger .portal-link {
+    color: #777; /* Greyer footer text */
+    opacity: 0.8;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .instructions-area {
+        padding: 1rem;
+    }
+    .page-trowel-ledger h1 {
+        font-size: 2rem;
+    }
+}
